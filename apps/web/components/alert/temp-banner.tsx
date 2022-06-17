@@ -1,0 +1,92 @@
+import Image from "next/image";
+import { FunctionComponent, ReactElement } from "react";
+import classNames from "classnames";
+import { useLocalStorageState } from "../../hooks";
+
+/** Banner that displays a message once per closing to localStorage.  */
+export const TempBanner: FunctionComponent<{
+  title: string | ReactElement;
+  message: string | ReactElement;
+  localStorageKey: string;
+  /** Ignore localstorage and always show banner. */
+  shouldPersist?: boolean;
+}> = ({ title, message, localStorageKey, shouldPersist = false }) => {
+  const [showBanner, setShowBanner] = useLocalStorageState(
+    localStorageKey,
+    true
+  );
+
+  if (!showBanner && !shouldPersist) {
+    return null;
+  }
+
+  return (
+    <div
+      style={{
+        zIndex: 1000,
+        backgroundImage: "linear-gradient(to bottom, #F8C259 0%, #B38203 100%)",
+      }}
+      className={classNames(
+        "fixed flex place-content-between right-3 top-3 text-white-high md:w-[330px] w-[596px] rounded-2xl",
+        {
+          "border border-enabledGold": !true,
+          "bg-background": !true,
+        },
+        "py-3"
+      )}
+    >
+      {!shouldPersist && (
+        <button
+          className="absolute w-[20px] -top-1.5 -left-1.5 cursor-pointer"
+          onClick={() => setShowBanner(false)}
+        >
+          <Image
+            alt="close"
+            src="/icons/close-circle.svg"
+            height={20}
+            width={20}
+          />
+        </button>
+      )}
+      <div className="flex w-full place-content-between items-center md:px-1 px-2 md:gap-1 gap-4">
+        <div className="flex items-center gap-4 md:gap-1">
+          <div className="pt-1.5 mx-2 shrink-0">
+            <Image
+              alt="info"
+              src={"/icons/info-white-emphasis.svg"}
+              height={20}
+              width={20}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            {typeof title === "string" ? (
+              <h6 className="md:subtitle1">{title}</h6>
+            ) : (
+              <>{title}</>
+            )}
+            <div
+              className={classNames("text-xs font-body gap-1", {
+                "text-white-mid": false,
+              })}
+            >
+              <>{message}</>
+            </div>
+          </div>
+        </div>
+        {!shouldPersist && (
+          <button
+            className="flex items-center shrink-0 w-[40px] cursor-pointer"
+            onClick={() => setShowBanner(false)}
+          >
+            <Image
+              alt="close"
+              src="/icons/close-circle-large.svg"
+              height={40}
+              width={40}
+            />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};

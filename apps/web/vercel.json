@@ -1,0 +1,103 @@
+{
+  "rewrites": [
+    {
+      "source": "/rpc",
+      "destination": "https://rpc.ollo.zone"
+    },
+    {
+      "source": "/rpc/:path*",
+      "destination": "https://rpc.ollo.zone/:path*"
+    },
+    {
+      "source": "/lcd",
+      "destination": "https://lcd.ollo.zone"
+    },
+    {
+      "source": "/lcd/:path*",
+      "destination": "https://lcd.ollo.zone/:path*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/pools",
+      "destination": "/pool"
+    },
+    {
+      "source": "/pools/:p*",
+      "destination": "/pool/:p*"
+    },
+    {
+      "source": "/users",
+      "destination": "/user"
+    },
+    {
+      "source": "/users/:u*",
+      "destination": "/user/:u*"
+    },
+    {
+      "source": "/stake/:validator",
+      "destination": "/stake/validators/:validator"
+    },
+    {
+      "source": "/proposals/:prop",
+      "destination": "/governance/proposals/:prop"
+    },
+    {
+      "source": "/user/:u",
+      "destination": "/users/:u"
+    },
+    {
+      "source": "/user/:u",
+      "destination": "/users/:u"
+    },
+    {
+      "source": "/docs",
+      "destination": "https://docs.ollo.zone",
+      "permanent": true
+    },
+    {
+      "source": "/explorer",
+      "destination": "https://explorer.ollo.zone",
+      "permanent": true
+    },
+    {
+      "source": "/docs/:d*",
+      "destination": "https://docs.ollo.zone/:d*",
+      "permanent": true
+    },
+    {
+      "source": "/explorer/:e*",
+      "destination": "https://explorer.ollo.zone/:e*",
+      "permanent": true
+    }
+  ],
+  "trailingSlash": false,
+  "env": {
+    "OLLO_RPC": "https://rpc.ollo.zone",
+    "OLLO_API": "https://lcd.ollo.zone",
+    "OLLO_CHAIN_ID": "ollo-testnet-1"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+        }
+      ]
+    }
+  ]
+}

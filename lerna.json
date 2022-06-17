@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "packages": ["packages/*", "apps/*"],
+  "libs": ["libs/*"],
+  "registry": "https://registry.npmjs.org",
+  "command": {
+    "create": {
+      "homepage": "https://github.com/Ollo-labs/Ollo-frontend",
+      "license": "SEE LICENSE IN LICENSE",
+      "access": "public"
+    },
+    "publish": {
+      "allowBranch": "master",
+      "message": "chore(release): publish"
+    }
+  }
+}

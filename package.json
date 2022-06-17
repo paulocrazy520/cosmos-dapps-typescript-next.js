@@ -1,0 +1,87 @@
+{
+  "name": "ollo-frontend",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "apps/*"
+    ]
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "dev": "turbo run dev  --parallel --continue --no-cache",
+    "ldev": "lerna run dev --parallel",
+    "dev:testnet": "cross-env NEXT_PUBLIC_IS_TESTNET=true lerna run dev --parallel",
+    "start": "turbo run start",
+    "lstart": "lerna run start --stream",
+    "start:testnet": "cross-env NEXT_PUBLIC_IS_TESTNET=true lerna run start --stream",
+    "clean": "turbo run clean; rm -rf node_modules",
+    "lclean": "lerna run clean; rm -rf node_modules",
+    "build": "turbo run build",
+    "lbuild": "lerna run build",
+    "build:testnet": "cross-env NEXT_PUBLIC_IS_TESTNET=true lerna run build",
+    "build:libs": "lerna run build --ignore @ollo/web",
+    "build:math": "cd packages/math && yarn build",
+    "build:pools": "cd packages/pools && yarn build",
+    "build:stores": "cd packages/stores && yarn build",
+    "build:web": "cd apps/web && yarn build",
+    "analyze": "lerna run analyze",
+    "test": "turbo run test",
+    "ltest": "lerna run test --parallel",
+    "build:clean": "yarn clean && yarn install --frozen-lockfile && lerna run build",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "llint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "pre-commit": "lerna run pre-commit"
+  },
+  "pre-commit": [
+    "pre-commit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ollo-labs/Ollo-frontend.git"
+  },
+  "author": "Ollo-labs",
+  "bugs": {
+    "url": "https://github.com/Ollo-labs/Ollo-frontend/issues"
+  },
+  "homepage": "https://github.com/Ollo-labs/Ollo-frontend#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@types/qrcode.react": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "autoprefixer": "^10.4.13",
+    "cosmos": "^0.1.2",
+    "cross-env": "^7.0.3",
+    "eslint": "8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-unicorn": "^40.0.0",
+    "jest": "^27.4.5",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.1.3",
+    "postcss": "^8.4.20",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^3.2.4",
+    "ts-jest": "^27.1.2",
+    "turbo": "^1.6.3",
+    "typescript": "4.5.4"
+  },
+  "dependencies": {
+    "@ethersproject/abi": "^5.7.0",
+    "@headlessui/react": "^1.7.6",
+    "@tippyjs/react": "^4.2.6",
+    "@transak/transak-sdk": "^1.2.3",
+    "mobx": "^6.7.0",
+    "mobx-react-lite": "^3.4.0",
+    "mobx-utils": "^6.0.5",
+    "qrcode.react": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "swr": "^2.0.0"
+  }
+}

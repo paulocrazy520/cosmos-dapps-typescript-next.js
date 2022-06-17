@@ -1,0 +1,47 @@
+{
+  "name": "@ollo/pools",
+  "version": "0.1.0",
+  "main": "build/index.js",
+  "typings": "types/index.d.ts",
+  "author": "Ollo-labs",
+  "homepage": "https://github.com/Ollo-labs/Ollo-frontend/tree/master/packages/pools#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ollo-labs/Ollo-frontend"
+  },
+  "bugs": {
+    "url": "https://github.com/Ollo-labs/Ollo-frontend/issues"
+  },
+  "keywords": [
+    "Ollo",
+    "pools"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules; rm -rf build",
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "jest --passWithNoTests",
+    "lint": "eslint \"src/**/*\" && prettier --check \"src/**/*\"",
+    "lint:fix": "eslint --fix \"src/**/*\" && prettier --write \"src/**/*\"",
+    "prepare": "yarn build && yarn test",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*": [
+      "eslint",
+      "prettier --check"
+    ]
+  },
+  "dependencies": {
+    "@keplr-wallet/unit": "^0.11.26",
+    "@ollo/math": "^0.1.0"
+  },
+  "devDependencies": {
+    "deepmerge": "^4.2.2",
+    "eslint": "^8.30.0"
+  }
+}
